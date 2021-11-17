@@ -1,16 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const mainRouter = require("./server/routes");
 
 const app = express();
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
-app.get('/', (req, res) => {
-  res.send('hello world');
-});
-
-// app.use('baseroute', routeObject);
+app.use("/golfdaddy_v1", mainRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`listening at http://localhost:${process.env.PORT}`);
